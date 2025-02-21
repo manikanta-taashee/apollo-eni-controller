@@ -15,8 +15,8 @@ Before running the script, ensure you have the following:
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
-   cd your-repo-name
+   https://github.com/manikanta-taashee/apollo-eni-controller.git
+   cd apollo-eni-controller
    ```
 
 
@@ -41,16 +41,6 @@ Before running the script, update the following parameters in `eni_failover_mana
 
 - `application_url`: Replace `'http://localhost'` with the URL of the application you want to monitor.
 
-For example:
-
-
-```python
-network_interface_id = 'eni-087be1476e95fcab6'
-instance_1_id = 'i-0e274309f1446db33'
-instance_2_id = 'i-020d57e4259d914a6'
-application_url = 'http://43.205.175.155:8000'
-```
-
 
 ## Usage
 
@@ -63,19 +53,5 @@ python3 eni_failover_manager.py
 
 
 The script will check the application's health at the specified `application_url`. If the application is down, it will detach the ENI from its current instance and attach it to the other instance to facilitate failover.
-
-## Important Considerations
-
-- **Permissions**: Ensure that the AWS credentials used have the necessary permissions to describe instances, detach, and attach network interfaces.
-
-- **Availability Zone**: Both EC2 instances and the ENI must reside in the same Availability Zone.
-
-- **Primary ENIs**: The primary network interface of an instance cannot be detached. Ensure the ENI in question is a secondary interface.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
 
 By following the steps outlined above, you can set up and run the `eni_failover_manager.py` script to monitor your application's health and manage ENI failover between two EC2 instances as needed. 
