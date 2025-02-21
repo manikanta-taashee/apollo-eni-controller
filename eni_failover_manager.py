@@ -2,19 +2,21 @@ import requests
 import boto3
 import time
 
-# Initialize the EC2 client
-ec2_client = boto3.client('ec2', region_name='ap-south-1')
-
 # Parameters
+region = 'ap-south-1'
 network_interface_id = 'eni-xxxxxxxx'
 instance_1_id = 'i-xxxxx'
 instance_2_id = 'i-xxxxx'
 application_url = 'http://localhost'
+url_timeout = 10
+
+# Initialize the EC2 client
+ec2_client = boto3.client('ec2', region_name=region)
 
 # Function to check application status
 def check_application_status(url):
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=url_timeout)
         print("Application Status Code ", response.status_code)
         print("Application is Up and Running.")
         return True
